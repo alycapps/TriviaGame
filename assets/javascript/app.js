@@ -47,15 +47,18 @@ $(document).ready(function() {
     };
 
     // hit start button to go to first question
-    $("#start").on("click", qpgload());
+    $(".start").on("click", function() {
+        qpgload();
+        console.log("start button clicked");
+    });
 
     function qpgload() {
         //timer countdown
         function countdown() {
             var seconds = 30;
             seconds--;
-            $("timerlocation").html("<h2>" + number + "</h2>");
-            if (number === 0) {
+            $("timerlocation").html("<h2>" + seconds + "</h2>");
+            if (seconds === 0) {
               stop();
               alert("Time Up!");
             }

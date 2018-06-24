@@ -46,13 +46,23 @@ $(document).ready(function() {
         RedHerrings: ["0.57%", "1.21%", "0.92%"],
     };
 
-    // display start button on initial page
-    // var startbutton = 
-    $("#ansloc2").html("START");
-
     // hit start button to go to first question
-    
-    // make a function to display question/answer choices and 30 second timer
+    $("#start").on("click", qpgload());
+
+    function qpgload() {
+        //timer countdown
+        function countdown() {
+            var seconds = 30;
+            seconds--;
+            $("timerlocation").html("<h2>" + number + "</h2>");
+            if (number === 0) {
+              stop();
+              alert("Time Up!");
+            }
+          }
+        countdown();
+        //display question/answer choices
+    }
 
     //page 1 run questiondisplay function
 

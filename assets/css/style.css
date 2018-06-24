@@ -1,0 +1,15 @@
+.playspace {
+    background-color: lightgrey;
+}
+
+.title {
+    border: blue dotted;
+}
+
+.answerlocation {
+    border: red dotted;
+}
+
+.questionlocation {
+    border: green solid;
+}

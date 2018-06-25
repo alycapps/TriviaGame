@@ -49,11 +49,12 @@ $(document).ready(function() {
 
     // hit start button to go to first question
     $(".start").on("click", function() {
-        qpgload();
+        qpgsetup();
+        timerload();
         console.log("start button clicked");
     });
 
-    function qpgload() {
+    function timerload() {
         //timer countdown
         var interval = setInterval(countdown, 1000);
         function countdown() {
@@ -70,12 +71,17 @@ $(document).ready(function() {
                 console.log("time up");
             }
           }
-        // 
-        console.log("ranqpgload");
-        //display question/answer choices
+        console.log("ran timerload");
     }
 
-   
+    //display question/answer choices
+    function qpgsetup() {
+        $(".questionlocation").text(q1.Question);
+        $(".ansloc1").text(q1.Answer);
+        $(".ansloc2").text(q1.RedHerrings[0]);
+        $(".ansloc3").text(q1.RedHerrings[1]);
+        $(".ansloc4").text(q1.RedHerrings[2]);
+    }
 
     //page 1 run questiondisplay function
 

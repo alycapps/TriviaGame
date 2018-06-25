@@ -55,19 +55,22 @@ $(document).ready(function() {
 
     function qpgload() {
         //timer countdown
-        setInterval(countdown, 1000);
+        var interval = setInterval(countdown, 1000);
         function countdown() {
             seconds--;
             console.log("countdown function ran");
             console.log("seconds" + seconds);
-            $("timerlocation").html(seconds + "seconds");
-            $("#timer").text(seconds);
+            // $("timerlocation").html(seconds + "seconds");
+            $(".timerlocation").text(seconds + " seconds");
+
+            //once time is up
             if (seconds === 0) {
-              stop();
-              console.log("time up");
+                clearInterval(interval);
+                stop();
+                console.log("time up");
             }
           }
-        // countdown();
+        // 
         console.log("ranqpgload");
         //display question/answer choices
     }

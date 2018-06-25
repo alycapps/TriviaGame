@@ -2,6 +2,7 @@ $(document).ready(function() {
     var correctcount = 0;
     var wrongcount = 0;
     var skippedcount = 0;
+    var seconds = 30;
 
     //make question objects
     var q1 = {
@@ -54,18 +55,24 @@ $(document).ready(function() {
 
     function qpgload() {
         //timer countdown
+        setInterval(countdown, 1000);
         function countdown() {
-            var seconds = 30;
             seconds--;
-            $("timerlocation").html("<h2>" + seconds + "</h2>");
+            console.log("countdown function ran");
+            console.log("seconds" + seconds);
+            $("timerlocation").html(seconds + "seconds");
+            $("#timer").text(seconds);
             if (seconds === 0) {
               stop();
-              alert("Time Up!");
+              console.log("time up");
             }
           }
-        countdown();
+        // countdown();
+        console.log("ranqpgload");
         //display question/answer choices
     }
+
+   
 
     //page 1 run questiondisplay function
 

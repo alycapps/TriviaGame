@@ -8,7 +8,7 @@ $(document).ready(function() {
     var q1 = {
         Question:"Which US President was shot while giving a speech and still finished the hour and half speech?",
         Answer: "Theodore Roosevelt",
-        RedHerrings: ["Abraham Lincoln", "Ulysses S. Grant", "Andrew Jackson"],
+        RedHerrings: ["Theodore Roosevelt", "Abraham Lincoln", "Ulysses S. Grant", "Andrew Jackson"],
     };
 
     var q2 = {
@@ -62,7 +62,7 @@ $(document).ready(function() {
             console.log("countdown function ran");
             console.log("seconds" + seconds);
             // $("timerlocation").html(seconds + "seconds");
-            $(".timerlocation").text(seconds + " seconds");
+            $(".timerlocation").text(seconds + " seconds left");
 
             //once time is up
             if (seconds === 0) {
@@ -77,6 +77,10 @@ $(document).ready(function() {
     //display question/answer choices
     function qpgsetup() {
         $(".questionlocation").text(q1.Question);
+        // for (i=0; i=q1.RedHerrings.length - 1; i++) {
+        //     var a = Math.random(Math.floor() * 3);
+        //     $(".ansloc1").text(q1.RedHerrings[a]);
+        // };
         $(".ansloc1").text(q1.Answer);
         $(".ansloc2").text(q1.RedHerrings[0]);
         $(".ansloc3").text(q1.RedHerrings[1]);

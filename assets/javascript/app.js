@@ -62,7 +62,7 @@ $(document).ready(function() {
             console.log("countdown function ran");
             console.log("seconds" + seconds);
             // $("timerlocation").html(seconds + "seconds");
-            $(".timerlocation").text(seconds + " seconds left");
+            $(".timerlocation").html("<strong>" + seconds + "</strong>" + " seconds left");
 
             //once time is up
             if (seconds === 0) {

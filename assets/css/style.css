@@ -1,15 +1,13 @@
 body {
     background-image: url("../images/redstripes.png");
+    color: rgb(245, 208, 3);
+    font-family: 'Merienda', cursive, 'Pacifico', cursive, 'Bree Serif', serif;
 }
 
 .playspace {
     background-image: url("../images/bluestarts.jpg");
 
 }
-
-/* .playspace {
-    /* background-color: lightgrey; */
-} */
 
 .title {
     border: blue dotted;
@@ -22,3 +20,9 @@ body {
 .questionlocation {
     border: green solid;
 }
+
+/* 
+Google fonts 
+font-family: 'Pacifico', cursive;
+font-family: 'Bree Serif', serif;
+font-family: 'Merienda', cursive; */

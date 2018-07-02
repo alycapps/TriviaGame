@@ -49,8 +49,8 @@ $(document).ready(function() {
 
     // hit start button to go to first question
     $(".start").on("click", function() {
-        qpgsetup();
         timerload();
+        qpgsetup();
         console.log("start button clicked");
     });
 
@@ -77,9 +77,15 @@ $(document).ready(function() {
     //display question/answer choices
     function qpgsetup() {
         $(".questionlocation").text(q1.Question);
-        // for (i=0; i=q1.RedHerrings.length - 1; i++) {
-        //     var a = Math.random(Math.floor() * 3);
-        //     $(".ansloc1").text(q1.RedHerrings[a]);
+        ///randomize locations of answer choices
+        //run length of answer choices
+        // for (a=0, a<4, a++) {
+            // for (i=0; i=q1.RedHerrings.length - 1; i++) {
+            //     var a = Math.random(Math.floor() * 3);
+            //     $(".ansloc" + i).text(q1.RedHerrings[a]);
+
+            // };
+
         // };
         $(".ansloc1").text(q1.Answer);
         $(".ansloc2").text(q1.RedHerrings[0]);

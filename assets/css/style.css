@@ -1,6 +1,15 @@
-.playspace {
-    background-color: lightgrey;
+body {
+    background-image: url("../images/redstripes.png");
 }
+
+.playspace {
+    background-image: url("../images/bluestarts.jpg");
+
+}
+
+/* .playspace {
+    /* background-color: lightgrey; */
+} */
 
 .title {
     border: blue dotted;

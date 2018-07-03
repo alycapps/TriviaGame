@@ -1,11 +1,15 @@
 body {
-    background-image: url("../images/redstripes.png");
-    color: rgb(245, 208, 3);
+    background-image: url("../images/bluestarts.jpg");
+    color: black;
     font-family: 'Merienda', cursive, 'Pacifico', cursive, 'Bree Serif', serif;
 }
 
+h1 {
+    color: rgb(245, 208, 3);
+}
+
 .playspace {
-    background-image: url("../images/bluestarts.jpg");
+    background-image: url("../images/redstripes.png");
 
 }
 

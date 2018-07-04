@@ -78,6 +78,8 @@ $(document).ready(preparepage());
                 clearInterval(interval);
                 stop();
                 console.log("time up");
+                skippedcount ++;
+                console.log("skippedcount" + skippedcount);
             }
           }
         console.log("ran timerload");
@@ -87,7 +89,7 @@ $(document).ready(preparepage());
     function qpgsetup() {
         clearpage();
         $(".questionlocation").text(q1.Question);
-        ///randomize locations of answer choices
+        //randomize locations of answer choices
         var anslocarray = [0,0,0,0];
         for (i = 0; i < 4; i++) {
             var x = Math.floor(Math.random() * 4) + 1;
@@ -108,14 +110,40 @@ $(document).ready(preparepage());
         $(".ansloc"+anslocarray[3]).html("<button type='button' class='btn btn-danger start'>" + q1.RedHerrings[2] + "</button>");
 
         $(".ansloc"+anslocarray[0]).id = "answer";
+
+        $(".ansloc"+anslocarray[0]).on("click", function() {
+            console.log("correct answer chosen");
+            correctcount ++;
+            console.log("correctcount: " + correctcount);
+        });
+
+        $(".ansloc"+anslocarray[1]).on("click", function() {
+            console.log("wrong answer chosen");
+            wrongcount ++;
+            console.log("wrongcount: " +wrongcount);
+        });
+        
+        $(".ansloc"+anslocarray[2]).on("click", function() {
+            console.log("wrong answer chosen");
+            wrongcount ++;
+            console.log("wrongcount: " +wrongcount);
+        });
+
+        $(".ansloc"+anslocarray[3]).on("click", function() {
+            console.log("wrong answer chosen");
+            wrongcount ++;
+            console.log("wrongcount: " +wrongcount);
+        });
     };
 
     function clearpage() {
+        $(".startbtn").text("");
         $(".questionlocation").text("");
         $(".ansloc1").text("");
         $(".ansloc2").text("");
         $(".ansloc3").text("");
         $(".ansloc4").text("");
+        $(".timerlocation").text("");
         console.log("clear page function ran");
     }
     function wpgsetup() {
@@ -126,6 +154,10 @@ $(document).ready(preparepage());
     }
     function summarypgsetup() {
         clearpage();
+        $(".ansloc1").text("Correct Answers: " + correctcount);
+        $(".ansloc2").text("Correct Answers: " + wrongcount);
+        $(".ansloc3").text("Correct Answers: " + skippedcount);
+        $(".ansloc4").text("Start Over?");
 
     }
 

@@ -1,28 +1,30 @@
 body {
-    background-image: url("../images/bluestarts.jpg");
-    color: black;
+    background-image: url("../images/redstripes.png");
+    color: white;
     font-family: 'Merienda', cursive, 'Pacifico', cursive, 'Bree Serif', serif;
 }
 
 h1 {
-    color: rgb(245, 208, 3);
+     color: rgb(245, 208, 3);
 }
 
 .playspace {
-    background-image: url("../images/redstripes.png");
+    background-image: url("../images/bluestarts.jpg");
 
 }
-
+.timerlocation {
+    background: rgb(38,58,117);
+}
 .title {
-    border: blue dotted;
+    background: rgb(38,58,117);
 }
 
 .answerlocation {
-    border: red dotted;
+    background: rgb(38,58,117);
 }
 
 .questionlocation {
-    border: green solid;
+    background: rgb(38,58,117);
 }
 
 /* 

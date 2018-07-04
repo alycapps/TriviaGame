@@ -8,6 +8,9 @@ h1 {
      color: rgb(245, 208, 3);
 }
 
+.btn {
+    margin: 1px;
+}
 .playspace {
     background-image: url("../images/bluestarts.jpg");
 

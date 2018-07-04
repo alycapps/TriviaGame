@@ -7,7 +7,7 @@ $(document).ready(preparepage());
 
     //make question objects
     var q1 = {
-        Question:"Which US President was shot while giving a speech and still finished the hour and half speech?",
+        Question:"Which US President was shot while giving a speech but still finished the 90 min speech?",
         Answer: "Theodore Roosevelt",
         RedHerrings: ["Abraham Lincoln", "Ulysses S. Grant", "Andrew Jackson"],
     };
@@ -25,7 +25,7 @@ $(document).ready(preparepage());
     };
 
     var q4 = {
-        Question:"What year was American Declaration of Independence signed?",
+        Question:"What year was the American Declaration of Independence signed?",
         Answer: "1776",
         RedHerrings: ["1832", "1492", "1812"],
     };
@@ -37,15 +37,21 @@ $(document).ready(preparepage());
     };
 
     var q6 = {
-        Question:"What American company invented Easy Cheese?",
-        Answer: "Mondelēz International",
-        RedHerrings: ["General Mills", "JBS USA", "Kraft Foods"],
+        Question:"What is the highest grossing American movie?",
+        Answer: "Star Wars: The Force Awakens",
+        RedHerrings: ["Titanic", "Avatar", "Black Panther"],
     };
 
     var q7 = {
         Question:"In what US City did Comic-Con start?",
         Answer: "San Diego, California",
         RedHerrings: ["0.57%", "1.21%", "0.92%"],
+    };
+
+    var q8 = {
+        Question:"What is the most popular name for a cat in the US?",
+        Answer: "Bella",
+        RedHerrings: ["Simba", "Oliver", "Mittens"],
     };
 
 // hit start button to go to first question
@@ -79,6 +85,7 @@ $(document).ready(preparepage());
 
     //display question/answer choices
     function qpgsetup() {
+        clearpage();
         $(".questionlocation").text(q1.Question);
         ///randomize locations of answer choices
         var anslocarray = [0,0,0,0];
@@ -95,13 +102,32 @@ $(document).ready(preparepage());
         }
         console.log(anslocarray);
 
-        $(".ansloc"+anslocarray[0]).text(q1.Answer);
-        $(".ansloc"+anslocarray[1]).text(q1.RedHerrings[0]);
-        $(".ansloc"+anslocarray[2]).text(q1.RedHerrings[1]);
-        $(".ansloc"+anslocarray[3]).text(q1.RedHerrings[2]);
+        $(".ansloc"+anslocarray[0]).html("<button type='button' class='btn btn-danger start'>" + q1.Answer + "</button>");
+        $(".ansloc"+anslocarray[1]).html("<button type='button' class='btn btn-danger start'>" + q1.RedHerrings[0] + "</button>");
+        $(".ansloc"+anslocarray[2]).html("<button type='button' class='btn btn-danger start'>" + q1.RedHerrings[1] + "</button>");
+        $(".ansloc"+anslocarray[3]).html("<button type='button' class='btn btn-danger start'>" + q1.RedHerrings[2] + "</button>");
 
         $(".ansloc"+anslocarray[0]).id = "answer";
     };
+
+    function clearpage() {
+        $(".questionlocation").text("");
+        $(".ansloc1").text("");
+        $(".ansloc2").text("");
+        $(".ansloc3").text("");
+        $(".ansloc4").text("");
+        console.log("clear page function ran");
+    }
+    function wpgsetup() {
+        clearpage();
+    }
+    function lpgsetup() {
+        clearpage();
+    }
+    function summarypgsetup() {
+        clearpage();
+
+    }
 
     //page 1 run questiondisplay function
 

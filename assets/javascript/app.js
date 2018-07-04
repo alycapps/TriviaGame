@@ -73,6 +73,11 @@ $(document).ready(preparepage());
             // $("timerlocation").html(seconds + "seconds");
             $(".timerlocation").html("<strong>" + seconds + "</strong>" + " seconds left");
 
+            $(".answerlocation").on("click", function() {
+                clearInterval(interval);
+                stop();
+            });
+
             //once time is up
             if (seconds === 0) {
                 clearInterval(interval);
@@ -80,7 +85,9 @@ $(document).ready(preparepage());
                 console.log("time up");
                 skippedcount ++;
                 console.log("skippedcount" + skippedcount);
+                skippgsetup();
             }
+           
           }
         console.log("ran timerload");
     }
@@ -115,24 +122,32 @@ $(document).ready(preparepage());
             console.log("correct answer chosen");
             correctcount ++;
             console.log("correctcount: " + correctcount);
+            winpgsetup();
+
         });
 
         $(".ansloc"+anslocarray[1]).on("click", function() {
             console.log("wrong answer chosen");
             wrongcount ++;
             console.log("wrongcount: " +wrongcount);
+            losspgsetup();
+
         });
         
         $(".ansloc"+anslocarray[2]).on("click", function() {
             console.log("wrong answer chosen");
             wrongcount ++;
             console.log("wrongcount: " +wrongcount);
+            losspgsetup();
+
         });
 
         $(".ansloc"+anslocarray[3]).on("click", function() {
             console.log("wrong answer chosen");
             wrongcount ++;
             console.log("wrongcount: " +wrongcount);
+            losspgsetup();
+
         });
     };
 
@@ -146,14 +161,47 @@ $(document).ready(preparepage());
         $(".timerlocation").text("");
         console.log("clear page function ran");
     }
-    function wpgsetup() {
-        clearpage();
+    function anspgtimer() {
+        //timer countdown
+        var interval = setInterval(countdown, 1000);
+        var time = 5;
+        function countdown() {
+            time--;
+            // console.log("countdown function ran");
+            // console.log("seconds" + seconds);
+            // $("timerlocation").html(seconds + "seconds");
+            $(".timerlocation").html("<strong>" + seconds + "</strong>" + " seconds left");
+
+            //once time is up
+            if (seconds === 0) {
+                clearInterval(interval);
+                stop();
+                console.log("time up");
+                skippedcount ++;
+                console.log("skippedcount" + skippedcount);
+                skippgsetup();
+            }
+          }
+        console.log("ran timerload");
     }
-    function lpgsetup() {
+    function winpgsetup() {
         clearpage();
+        $(".questionlocation").text("YAY!!!");
+
+
     }
+    function losspgsetup() {
+        clearpage();
+        $(".questionlocation").text("Better luck next time");
+    }
+    function skippgsetup() {
+        clearpage();
+        $(".questionlocation").text("Oh no the time ran out!");
+    }
+
     function summarypgsetup() {
         clearpage();
+        $(".startbtn").html("<strong> Now let's see how patriotic you are! </strong>");
         $(".ansloc1").text("Correct Answers: " + correctcount);
         $(".ansloc2").text("Correct Answers: " + wrongcount);
         $(".ansloc3").text("Correct Answers: " + skippedcount);

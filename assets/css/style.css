@@ -11,13 +11,16 @@ h1 {
 .btn {
     margin: 1px;
 }
+
 .playspace {
     background-image: url("../images/bluestarts.jpg");
 
 }
+
 .timerlocation {
     background: rgb(38,58,117);
 }
+
 .title {
     background: rgb(38,58,117);
 }

@@ -161,19 +161,18 @@ $(document).ready(preparepage());
         $(".timerlocation").text("");
         console.log("clear page function ran");
     }
+
     function anspgtimer() {
         //timer countdown
         var interval = setInterval(countdown, 1000);
         var time = 5;
         function countdown() {
             time--;
-            // console.log("countdown function ran");
-            // console.log("seconds" + seconds);
-            // $("timerlocation").html(seconds + "seconds");
-            $(".timerlocation").html("<strong>" + seconds + "</strong>" + " seconds left");
+            console.log("countdown function ran");
+            console.log("seconds" + time);
 
             //once time is up
-            if (seconds === 0) {
+            if (time === 0) {
                 clearInterval(interval);
                 stop();
                 console.log("time up");
@@ -187,16 +186,19 @@ $(document).ready(preparepage());
     function winpgsetup() {
         clearpage();
         $(".questionlocation").text("YAY!!!");
-
-
+        anspgtimer();
     }
+
     function losspgsetup() {
         clearpage();
         $(".questionlocation").text("Better luck next time");
+        anspgtimer();
     }
+
     function skippgsetup() {
         clearpage();
         $(".questionlocation").text("Oh no the time ran out!");
+        anspgtimer();
     }
 
     function summarypgsetup() {

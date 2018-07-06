@@ -3,7 +3,8 @@ $(document).ready(preparepage());
     var correctcount = 0;
     var wrongcount = 0;
     var skippedcount = 0;
-    var seconds = 30;
+    var runiteration = true;
+    var iteration = 1;
 
     //make question objects
     var q1 = {
@@ -58,13 +59,15 @@ $(document).ready(preparepage());
     function preparepage() {
         $(".start").on("click", function() {
             timerload();
-            qpgsetup();
+            qpgsetup(iteration);
             console.log("start button clicked");
         });
     };
 
     function timerload() {
         //timer countdown
+        var seconds = 30;
+
         var interval = setInterval(countdown, 1000);
         function countdown() {
             seconds--;
@@ -93,64 +96,75 @@ $(document).ready(preparepage());
     }
 
     //display question/answer choices
-    function qpgsetup() {
+    function qpgsetup(iteration) {
         clearpage();
-        $(".questionlocation").text(q1.Question);
-        //randomize locations of answer choices
-        var anslocarray = [0,0,0,0];
-        for (i = 0; i < 4; i++) {
-            var x = Math.floor(Math.random() * 4) + 1;
-            var v = anslocarray.indexOf(x);
-            while (v >= 0) {
-                console.log("loop started - value is " + x + " and array looks like: " + anslocarray)
-                x = Math.floor(Math.random() * 4) + 1;
-                v = anslocarray.indexOf(x);
-                console.log(v);
-            }
-            anslocarray[i] = x;
-        }
-        console.log(anslocarray);
+        while (runiteration == true) {
+                var qarray = [q1.Questtion, q2.Question, q3.Question, q4.Question, q5.Question, q6.Question, q7.Question, q8.Question];
+                $(".questionlocation").text(qarray[iteration-1]);
+                //randomize locations of answer choices
+                var anslocarray = [0,0,0,0];
+                for (i = 0; i < 4; i++) {
+                    var x = Math.floor(Math.random() * 4) + 1;
+                    var v = anslocarray.indexOf(x);
+                    while (v >= 0) {
+                        console.log("loop started - value is " + x + " and array looks like: " + anslocarray)
+                        x = Math.floor(Math.random() * 4) + 1;
+                        v = anslocarray.indexOf(x);
+                        console.log(v);
+                    }
+                    anslocarray[i] = x;
+                }
+                console.log(anslocarray);
 
-        $(".ansloc"+anslocarray[0]).html("<button type='button' class='btn btn-danger start'>" + q1.Answer + "</button>");
-        $(".ansloc"+anslocarray[1]).html("<button type='button' class='btn btn-danger start'>" + q1.RedHerrings[0] + "</button>");
-        $(".ansloc"+anslocarray[2]).html("<button type='button' class='btn btn-danger start'>" + q1.RedHerrings[1] + "</button>");
-        $(".ansloc"+anslocarray[3]).html("<button type='button' class='btn btn-danger start'>" + q1.RedHerrings[2] + "</button>");
-
-        $(".ansloc"+anslocarray[0]).id = "answer";
-
-        $(".ansloc"+anslocarray[0]).on("click", function() {
-            console.log("correct answer chosen");
-            correctcount ++;
-            console.log("correctcount: " + correctcount);
-            winpgsetup();
-
-        });
-
-        $(".ansloc"+anslocarray[1]).on("click", function() {
-            console.log("wrong answer chosen");
-            wrongcount ++;
-            console.log("wrongcount: " +wrongcount);
-            losspgsetup();
-
-        });
+                //EDITS FOR LOOP
+                // assigning random value to each gem
+                var ansstring = [q1.Answer, q2.Answer, q3.Answer, q4.Answer, q5.Answer, q6.Answer, q7.Answer, q8.Answer];
+                
+                
         
-        $(".ansloc"+anslocarray[2]).on("click", function() {
-            console.log("wrong answer chosen");
-            wrongcount ++;
-            console.log("wrongcount: " +wrongcount);
-            losspgsetup();
+                $(".ansloc"+anslocarray[0]).html("<button type='button' class='btn btn-danger start'>" + q1.Answer + "</button>");
+                $(".ansloc"+anslocarray[1]).html("<button type='button' class='btn btn-danger start'>" + q1.RedHerrings[0] + "</button>");
+                $(".ansloc"+anslocarray[2]).html("<button type='button' class='btn btn-danger start'>" + q1.RedHerrings[1] + "</button>");
+                $(".ansloc"+anslocarray[3]).html("<button type='button' class='btn btn-danger start'>" + q1.RedHerrings[2] + "</button>");
 
-        });
+                $(".ansloc"+anslocarray[0]).id = "answer";
 
-        $(".ansloc"+anslocarray[3]).on("click", function() {
-            console.log("wrong answer chosen");
-            wrongcount ++;
-            console.log("wrongcount: " +wrongcount);
-            losspgsetup();
+                $(".ansloc"+anslocarray[0]).on("click", function() {
+                    console.log("correct answer chosen");
+                    correctcount ++;
+                    console.log("correctcount: " + correctcount);
+                    winpgsetup();
+                   
+                });
 
-        });
+                $(".ansloc"+anslocarray[1]).on("click", function() {
+                    console.log("wrong answer chosen");
+                    wrongcount ++;
+                    console.log("wrongcount: " +wrongcount);
+                    losspgsetup();
+
+                });
+                
+                $(".ansloc"+anslocarray[2]).on("click", function() {
+                    console.log("wrong answer chosen");
+                    wrongcount ++;
+                    console.log("wrongcount: " +wrongcount);
+                    losspgsetup();
+
+                });
+
+                $(".ansloc"+anslocarray[3]).on("click", function() {
+                    console.log("wrong answer chosen");
+                    wrongcount ++;
+                    console.log("wrongcount: " +wrongcount);
+                    losspgsetup();
+                });
+
+            runiteration = false;
+            
+        };
     };
-
+    
     function clearpage() {
         $(".startbtn").text("");
         $(".questionlocation").text("");
@@ -164,25 +178,31 @@ $(document).ready(preparepage());
 
     function anspgtimer() {
         //timer countdown
-        var interval = setInterval(countdown, 1000);
+        var interval = setInterval(anspgcountdown, 1000);
         var time = 5;
-        function countdown() {
+        function anspgcountdown() {
             time--;
-            console.log("countdown function ran");
-            console.log("seconds" + time);
+            console.log("anspgtimer function ran");
+            console.log("anspgtimer sec" + time);
 
             //once time is up
             if (time === 0) {
                 clearInterval(interval);
                 stop();
                 console.log("time up");
-                skippedcount ++;
-                console.log("skippedcount" + skippedcount);
-                skippgsetup();
+                //go to next question
+                iteration ++;
+                console.log("iteration: " + iteration);
+                runiteration = true;
+                timerload();
+                qpgsetup(iteration);
+                // runiteration = true;
+
             }
           }
-        console.log("ran timerload");
+        console.log("ran anspgtimer");
     }
+
     function winpgsetup() {
         clearpage();
         $(".questionlocation").text("YAY!!!");
@@ -211,12 +231,6 @@ $(document).ready(preparepage());
 
     }
 
-    //page 1 run questiondisplay function
+    summarypgsetup;
 
-    // if correct answer add 1 to correctcount and run questiondisplay function
 
-    // if wrong  run questiondisplay function and add 1 to wrongcount
-
-    //if time runs then run questiondisplay function and add 1 to skippedcount
-
-    //after all questions display summary page

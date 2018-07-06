@@ -99,7 +99,13 @@ $(document).ready(preparepage());
     function qpgsetup(iteration) {
         clearpage();
         while (runiteration == true) {
-                var qarray = [q1.Questtion, q2.Question, q3.Question, q4.Question, q5.Question, q6.Question, q7.Question, q8.Question];
+                var qarray = [q1.Question, q2.Question, q3.Question, q4.Question, q5.Question, q6.Question, q7.Question, q8.Question];
+                var ansarray = [q1.Answer, q2.Answer, q3.Answer, q4.Answer, q5.Answer, q6.Answer, q7.Answer, q8.Answer];
+                var rharray = { it0: [q1.RedHerrings[0], q2.RedHerrings[0], q3.RedHerrings[0], q4.RedHerrings[0], q5.RedHerrings[0], q6.RedHerrings[0], q7.RedHerrings[0], q8.RedHerrings[0]],
+                                it1: [q1.RedHerrings[1], q2.RedHerrings[1], q3.RedHerrings[1], q4.RedHerrings[1], q5.RedHerrings[1], q6.RedHerrings[1], q7.RedHerrings[1], q8.RedHerrings[1]],
+                                it2: [q1.RedHerrings[2], q2.RedHerrings[2], q3.RedHerrings[2], q4.RedHerrings[2], q5.RedHerrings[2], q6.RedHerrings[2], q7.RedHerrings[2], q8.RedHerrings[2]],
+                };
+                
                 $(".questionlocation").text(qarray[iteration-1]);
                 //randomize locations of answer choices
                 var anslocarray = [0,0,0,0];
@@ -115,19 +121,11 @@ $(document).ready(preparepage());
                     anslocarray[i] = x;
                 }
                 console.log(anslocarray);
-
-                //EDITS FOR LOOP
-                // assigning random value to each gem
-                var ansstring = [q1.Answer, q2.Answer, q3.Answer, q4.Answer, q5.Answer, q6.Answer, q7.Answer, q8.Answer];
-                
-                
         
-                $(".ansloc"+anslocarray[0]).html("<button type='button' class='btn btn-danger start'>" + q1.Answer + "</button>");
-                $(".ansloc"+anslocarray[1]).html("<button type='button' class='btn btn-danger start'>" + q1.RedHerrings[0] + "</button>");
-                $(".ansloc"+anslocarray[2]).html("<button type='button' class='btn btn-danger start'>" + q1.RedHerrings[1] + "</button>");
-                $(".ansloc"+anslocarray[3]).html("<button type='button' class='btn btn-danger start'>" + q1.RedHerrings[2] + "</button>");
-
-                $(".ansloc"+anslocarray[0]).id = "answer";
+                $(".ansloc"+anslocarray[0]).html("<button type='button' class='btn btn-danger start'>" + ansarray[iteration-1] + "</button>");
+                $(".ansloc"+anslocarray[1]).html("<button type='button' class='btn btn-danger start'>" + rharray.it0[iteration-1] + "</button>");
+                $(".ansloc"+anslocarray[2]).html("<button type='button' class='btn btn-danger start'>" + rharray.it1[iteration-1] + "</button>");
+                $(".ansloc"+anslocarray[3]).html("<button type='button' class='btn btn-danger start'>" + rharray.it2[iteration-1] + "</button>");
 
                 $(".ansloc"+anslocarray[0]).on("click", function() {
                     console.log("correct answer chosen");

@@ -63,10 +63,9 @@ $(document).ready(preparepage());
             // console.log("start button clicked");
         });
     };
-
     function timerload() {
-        //timer countdown
         var seconds = 30;
+        //timer countdown
         var interval = setInterval(countdown, 1000);
         function countdown() {
             seconds--;
@@ -87,7 +86,14 @@ $(document).ready(preparepage());
                 console.log("skippedcount" + skippedcount);
                 skippgsetup();
             }
+
+            //FIX COUNTDOWN
+            // else if ($(".startbtn").html("<strong> Now let's see how patriotic you are! </strong>")) {
+            //     clearInterval(interval);
+            //     stop();
+            // }
           }
+
         console.log("ran timerload");
     }
 
@@ -226,6 +232,7 @@ $(document).ready(preparepage());
         $(".ansloc1").text("Correct Answers: " + correctcount);
         $(".ansloc2").text("Incorrect Answers: " + wrongcount);
         $(".ansloc3").text("Skipped Answers: " + skippedcount);
+        //MAKE STARTOVER BUTTON WORK
         $(".ansloc4").text("Start Over?");
 
     }

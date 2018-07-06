@@ -63,6 +63,10 @@ $(document).ready(preparepage());
             // console.log("start button clicked");
         });
     };
+
+    var ansarray = [q1.Answer, q2.Answer, q3.Answer, q4.Answer, q5.Answer, q6.Answer, q7.Answer, q8.Answer];
+
+
     function timerload() {
         var seconds = 30;
         //timer countdown
@@ -85,6 +89,7 @@ $(document).ready(preparepage());
                 skippedcount ++;
                 console.log("skippedcount" + skippedcount);
                 skippgsetup();
+                $(".ansloc1").text("The correct answer was " + ansarray[iteration-1]);
             }
 
             //FIX COUNTDOWN
@@ -97,12 +102,12 @@ $(document).ready(preparepage());
         console.log("ran timerload");
     }
 
+
     //display question/answer choices
     function qpgsetup(iteration) {
         clearpage();
         if (iteration < 9) {
                 var qarray = [q1.Question, q2.Question, q3.Question, q4.Question, q5.Question, q6.Question, q7.Question, q8.Question];
-                var ansarray = [q1.Answer, q2.Answer, q3.Answer, q4.Answer, q5.Answer, q6.Answer, q7.Answer, q8.Answer];
                 var rharray = { it0: [q1.RedHerrings[0], q2.RedHerrings[0], q3.RedHerrings[0], q4.RedHerrings[0], q5.RedHerrings[0], q6.RedHerrings[0], q7.RedHerrings[0], q8.RedHerrings[0]],
                                 it1: [q1.RedHerrings[1], q2.RedHerrings[1], q3.RedHerrings[1], q4.RedHerrings[1], q5.RedHerrings[1], q6.RedHerrings[1], q7.RedHerrings[1], q8.RedHerrings[1]],
                                 it2: [q1.RedHerrings[2], q2.RedHerrings[2], q3.RedHerrings[2], q4.RedHerrings[2], q5.RedHerrings[2], q6.RedHerrings[2], q7.RedHerrings[2], q8.RedHerrings[2]],
@@ -143,7 +148,7 @@ $(document).ready(preparepage());
                     wrongcount ++;
                     console.log("wrongcount: " +wrongcount);
                     losspgsetup();
-
+                    $(".ansloc1").html("The correct answer was " + "<strong>" + ansarray[iteration-1] + "</strong>");
                 });
 
                 $(".ansloc"+anslocarray[2]).unbind("click");
@@ -152,6 +157,7 @@ $(document).ready(preparepage());
                     wrongcount ++;
                     console.log("wrongcount: " +wrongcount);
                     losspgsetup();
+                    $(".ansloc1").html("The correct answer was " + "<strong>" + ansarray[iteration-1] + "</strong>");
 
                 });
 
@@ -161,6 +167,7 @@ $(document).ready(preparepage());
                     wrongcount ++;
                     console.log("wrongcount: " +wrongcount);
                     losspgsetup();
+                    $(".ansloc1").html("The correct answer was " + "<strong>" + ansarray[iteration-1] + "</strong>");
                 });
 
             // runiteration = false;

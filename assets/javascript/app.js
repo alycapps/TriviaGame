@@ -3,7 +3,7 @@ $(document).ready(preparepage());
     var correctcount = 0;
     var wrongcount = 0;
     var skippedcount = 0;
-    var runiteration = true;
+    // var runiteration = true;
     var iteration = 1;
 
     //make question objects
@@ -60,14 +60,13 @@ $(document).ready(preparepage());
         $(".start").on("click", function() {
             timerload();
             qpgsetup(iteration);
-            console.log("start button clicked");
+            // console.log("start button clicked");
         });
     };
 
     function timerload() {
         //timer countdown
         var seconds = 30;
-
         var interval = setInterval(countdown, 1000);
         function countdown() {
             seconds--;
@@ -75,12 +74,10 @@ $(document).ready(preparepage());
             // console.log("seconds" + seconds);
             // $("timerlocation").html(seconds + "seconds");
             $(".timerlocation").html("<strong>" + seconds + "</strong>" + " seconds left");
-
             $(".answerlocation").on("click", function() {
                 clearInterval(interval);
                 stop();
             });
-
             //once time is up
             if (seconds === 0) {
                 clearInterval(interval);
@@ -90,7 +87,6 @@ $(document).ready(preparepage());
                 console.log("skippedcount" + skippedcount);
                 skippgsetup();
             }
-           
           }
         console.log("ran timerload");
     }
@@ -98,7 +94,7 @@ $(document).ready(preparepage());
     //display question/answer choices
     function qpgsetup(iteration) {
         clearpage();
-        while (runiteration == true) {
+        if (iteration < 9) {
                 var qarray = [q1.Question, q2.Question, q3.Question, q4.Question, q5.Question, q6.Question, q7.Question, q8.Question];
                 var ansarray = [q1.Answer, q2.Answer, q3.Answer, q4.Answer, q5.Answer, q6.Answer, q7.Answer, q8.Answer];
                 var rharray = { it0: [q1.RedHerrings[0], q2.RedHerrings[0], q3.RedHerrings[0], q4.RedHerrings[0], q5.RedHerrings[0], q6.RedHerrings[0], q7.RedHerrings[0], q8.RedHerrings[0]],
@@ -127,14 +123,15 @@ $(document).ready(preparepage());
                 $(".ansloc"+anslocarray[2]).html("<button type='button' class='btn btn-danger start'>" + rharray.it1[iteration-1] + "</button>");
                 $(".ansloc"+anslocarray[3]).html("<button type='button' class='btn btn-danger start'>" + rharray.it2[iteration-1] + "</button>");
 
+                $(".ansloc"+anslocarray[0]).unbind("click");
                 $(".ansloc"+anslocarray[0]).on("click", function() {
                     console.log("correct answer chosen");
                     correctcount ++;
                     console.log("correctcount: " + correctcount);
                     winpgsetup();
-                   
                 });
 
+                $(".ansloc"+anslocarray[1]).unbind("click");
                 $(".ansloc"+anslocarray[1]).on("click", function() {
                     console.log("wrong answer chosen");
                     wrongcount ++;
@@ -142,7 +139,8 @@ $(document).ready(preparepage());
                     losspgsetup();
 
                 });
-                
+
+                $(".ansloc"+anslocarray[2]).unbind("click");
                 $(".ansloc"+anslocarray[2]).on("click", function() {
                     console.log("wrong answer chosen");
                     wrongcount ++;
@@ -151,6 +149,7 @@ $(document).ready(preparepage());
 
                 });
 
+                $(".ansloc"+anslocarray[3]).unbind("click");
                 $(".ansloc"+anslocarray[3]).on("click", function() {
                     console.log("wrong answer chosen");
                     wrongcount ++;
@@ -158,9 +157,13 @@ $(document).ready(preparepage());
                     losspgsetup();
                 });
 
-            runiteration = false;
+            // runiteration = false;
             
-        };
+        }
+
+        else {
+            summarypgsetup();
+        }
     };
     
     function clearpage() {
@@ -180,22 +183,20 @@ $(document).ready(preparepage());
         var time = 5;
         function anspgcountdown() {
             time--;
-            console.log("anspgtimer function ran");
+            console.log("ran anspgcountdown");
             console.log("anspgtimer sec" + time);
 
             //once time is up
             if (time === 0) {
                 clearInterval(interval);
                 stop();
-                console.log("time up");
+                console.log("auto next page time up");
                 //go to next question
                 iteration ++;
                 console.log("iteration: " + iteration);
-                runiteration = true;
+                // runiteration = true;
                 timerload();
                 qpgsetup(iteration);
-                // runiteration = true;
-
             }
           }
         console.log("ran anspgtimer");
@@ -223,12 +224,11 @@ $(document).ready(preparepage());
         clearpage();
         $(".startbtn").html("<strong> Now let's see how patriotic you are! </strong>");
         $(".ansloc1").text("Correct Answers: " + correctcount);
-        $(".ansloc2").text("Correct Answers: " + wrongcount);
-        $(".ansloc3").text("Correct Answers: " + skippedcount);
+        $(".ansloc2").text("Incorrect Answers: " + wrongcount);
+        $(".ansloc3").text("Skipped Answers: " + skippedcount);
         $(".ansloc4").text("Start Over?");
 
     }
 
-    summarypgsetup;
 
 

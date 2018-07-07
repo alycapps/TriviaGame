@@ -169,6 +169,7 @@ $(document).ready(preparepage());
         $(".ansloc3").text("");
         $(".ansloc4").text("");
         $(".timerlocation").text("");
+        $(".restartbtn").text("");
         console.log("clear page function ran");
     }
 
@@ -232,5 +233,14 @@ $(document).ready(preparepage());
         "Incorrect Answers: " + wrongcount
         + "<br>" +
         "Skipped Answers: " + skippedcount + "</h4><br>");
-        $(".ansloc4").html("<button type='button' class='btn btn-danger start'>" + "Start Over?" + "</button>");
+        $(".restartbtn").html("<button type='button' class='btn btn-danger restart'>" + "Start Over?" + "</button>");
     }
+
+    $(".restartbtn").on("click", function() {
+        correctcount = 0;
+        wrongcount = 0;
+        skippedcount = 0;
+        iteration = 1;
+        timerload();
+        qpgsetup(iteration);
+    });

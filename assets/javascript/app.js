@@ -4,16 +4,27 @@ $(document).ready(preparepage());
     var wrongcount = 0;
     var skippedcount = 0;
     var iteration = 1;
-    var picarray = ["./assets/images/TeddyRoosevelt.jpg", 
-    "./assets/images/RaisingTheFlag.jpg", 
-    "./assets/images/americandog.jpg",
-    "./assets/images/DecofInd.jpg",
-    "./assets/images/unclesam.jpg",
-    "./assets/images/starwars.jpg",
-    "./assets/images/captainamerica.jpg",
-    "./assets/images/americacat.jpg",
-    "./assets/images/WashingtonCrossingTheDeleware.jpg"];
-
+    var picarray = ["https://media.giphy.com/media/7d23MUjmhw2EU/giphy.gif",
+    // "./assets/images/TeddyRoosevelt.jpg", 
+    "https://media.giphy.com/media/wqHXbOcynM7Oo/giphy.gif",
+    // "./assets/images/RaisingTheFlag.jpg", 
+    "https://media.giphy.com/media/f4HpCDvF84oh2/giphy.gif",
+    // "./assets/images/americandog.jpg",
+    "https://media.giphy.com/media/8KnfG3knLExpu/giphy.gif",
+    // "./assets/images/DecofInd.jpg",
+    "https://media.giphy.com/media/VfyC5j7sR4cso/giphy.gif",
+    // "./assets/images/unclesam.jpg",
+    "https://media.giphy.com/media/l1J9KJE8BKO09QTzW/giphy.gif",
+    // "./assets/images/starwars.jpg",
+    "https://media.giphy.com/media/eeGp0S98LR1io/giphy.gif",
+    // "./assets/images/captainamerica.jpg",
+    "https://media.giphy.com/media/ktExCvEeKgE12/giphy.gif",
+    // "https://media.giphy.com/media/ByVCdBesCZHi0/giphy.gif",
+    // "./assets/images/americacat.jpg",
+    "https://media.giphy.com/media/EPDjO7pkxU8KI/giphy.gif",
+    // "./assets/images/WashingtonCrossingTheDeleware.jpg"];
+    ];
+    
     //make question objects
     var q1 = {
         Question:"Which US President was shot while giving a speech but still finished the 90 min speech?",

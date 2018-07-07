@@ -33,6 +33,11 @@ h1 {
     background: rgb(38,58,117);
 }
 
+img {
+    height: 300 px;
+    
+}
+
 /* 
 Google fonts 
 font-family: 'Pacifico', cursive;

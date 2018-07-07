@@ -76,9 +76,8 @@ $(document).ready(preparepage());
 
 
     function timerload() {
-        // if ($(".ansloc4").html("<button type='button' class='btn btn-danger start'>" + "Start Over?" + "</button>")) {
-        // }
-        // else {
+        //only run on question pages not summary page
+        if (iteration < 9) {
             var seconds = 30;
             //timer countdown
             var interval = setInterval(countdown, 1000);
@@ -94,20 +93,15 @@ $(document).ready(preparepage());
                     clearInterval(interval);
                     stop();
                     console.log("time up");
-                    // skippedcount ++;
-                    // console.log("skippedcount" + skippedcount);
                     skippgsetup();
-                    // $(".ansloc1").html("<h3>The correct answer was " + ansarray[iteration-1] + "</h3>");
                 }
-
-                //FIX COUNTDOWN
-                // else if ($(".startbtn").html("<strong> Now let's see how patriotic you are! </strong>")) {
-                //     clearInterval(interval);
-                //     stop();
-                // }
             }
             console.log("ran timerload");
-        // }
+        }
+        else {
+            clearInterval(interval);
+            stop();
+        }
     }
 
 
@@ -161,8 +155,6 @@ $(document).ready(preparepage());
                 $(".ansloc"+anslocarray[3]).on("click", function() {
                     losspgsetup();
                 });
-
-            
         }
 
         else {

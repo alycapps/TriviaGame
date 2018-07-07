@@ -4,6 +4,15 @@ $(document).ready(preparepage());
     var wrongcount = 0;
     var skippedcount = 0;
     var iteration = 1;
+    var picarray = ["./assets/images/TeddyRoosevelt.jpg", 
+    "./assets/images/RaisingTheFlag.jpg", 
+    "./assets/images/americandog.jpg",
+    "./assets/images/DecofInd.jpg",
+    "./assets/images/unclesam.jpg",
+    "./assets/images/starwars.jpg",
+    "./assets/images/captainamerica.jpg",
+    "./assets/images/americacat.jpg",
+    "./assets/images/WashingtonCrossingTheDeleware.jpg"];
 
     //make question objects
     var q1 = {
@@ -45,7 +54,7 @@ $(document).ready(preparepage());
     var q7 = {
         Question:"In what US City did Comic-Con start?",
         Answer: "San Diego, California",
-        RedHerrings: ["0.57%", "1.21%", "0.92%"],
+        RedHerrings: ["NYC, NY", "Portland, Oregon", "San Francisco, California"],
     };
 
     var q8 = {
@@ -204,6 +213,7 @@ $(document).ready(preparepage());
         correctcount ++;
         console.log("correctcount: " + correctcount);
         anspgtimer();
+        $(".ansloc1").html('<img src="' + picarray[iteration-1] + '" />')
     }
 
     function losspgsetup() {
@@ -214,6 +224,7 @@ $(document).ready(preparepage());
         console.log("wrongcount: " +wrongcount);
         wrongcount ++;
         anspgtimer();
+        $(".ansloc1").html('<img src="' + picarray[iteration-1] + '" />')
     }
 
     function skippgsetup() {
@@ -223,6 +234,7 @@ $(document).ready(preparepage());
         skippedcount ++;
         console.log("skippedcount" + skippedcount);
         anspgtimer();
+        $(".ansloc1").html('<img src="' + picarray[iteration-1] + '" />')
     }
 
     function summarypgsetup() {
@@ -234,6 +246,7 @@ $(document).ready(preparepage());
         + "<br>" +
         "Skipped Answers: " + skippedcount + "</h4><br>");
         $(".restartbtn").html("<button type='button' class='btn btn-danger restart'>" + "Start Over?" + "</button>");
+        $(".ansloc1").html('<img src="' + picarray[iteration-1] + '" />')
     }
 
     $(".restartbtn").on("click", function() {

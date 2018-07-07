@@ -3,7 +3,6 @@ $(document).ready(preparepage());
     var correctcount = 0;
     var wrongcount = 0;
     var skippedcount = 0;
-    // var runiteration = true;
     var iteration = 1;
 
     //make question objects
@@ -68,38 +67,39 @@ $(document).ready(preparepage());
 
 
     function timerload() {
-        var seconds = 30;
-        //timer countdown
-        var interval = setInterval(countdown, 1000);
-        function countdown() {
-            seconds--;
-            // console.log("countdown function ran");
-            // console.log("seconds" + seconds);
-            // $("timerlocation").html(seconds + "seconds");
-            $(".timerlocation").html("<strong>" + seconds + "</strong>" + " seconds left");
-            $(".answerlocation").on("click", function() {
-                clearInterval(interval);
-                stop();
-            });
-            //once time is up
-            if (seconds === 0) {
-                clearInterval(interval);
-                stop();
-                console.log("time up");
-                skippedcount ++;
-                console.log("skippedcount" + skippedcount);
-                skippgsetup();
-                $(".ansloc1").text("The correct answer was " + ansarray[iteration-1]);
+        if ($(".ansloc4").html("<button type='button' class='btn btn-danger start'>" + "Start Over?" + "</button>")) {
+        }
+        else {
+            var seconds = 30;
+            //timer countdown
+            var interval = setInterval(countdown, 1000);
+            function countdown() {
+                seconds--;
+                $(".timerlocation").html("<strong>" + seconds + "</strong>" + " seconds left");
+                $(".answerlocation").on("click", function() {
+                    clearInterval(interval);
+                    stop();
+                });
+                //once time is up
+                if (seconds === 0) {
+                    clearInterval(interval);
+                    stop();
+                    console.log("time up");
+                    skippedcount ++;
+                    console.log("skippedcount" + skippedcount);
+                    skippgsetup();
+                    $(".ansloc1").text("The correct answer was " + ansarray[iteration-1]);
+                }
+
+                //FIX COUNTDOWN
+                // else if ($(".startbtn").html("<strong> Now let's see how patriotic you are! </strong>")) {
+                //     clearInterval(interval);
+                //     stop();
+                // }
             }
 
-            //FIX COUNTDOWN
-            // else if ($(".startbtn").html("<strong> Now let's see how patriotic you are! </strong>")) {
-            //     clearInterval(interval);
-            //     stop();
-            // }
-          }
-
-        console.log("ran timerload");
+            console.log("ran timerload");
+        }
     }
 
 
@@ -129,10 +129,10 @@ $(document).ready(preparepage());
                 }
                 console.log(anslocarray);
         
-                $(".ansloc"+anslocarray[0]).html("<button type='button' class='btn btn-danger start'>" + ansarray[iteration-1] + "</button>");
-                $(".ansloc"+anslocarray[1]).html("<button type='button' class='btn btn-danger start'>" + rharray.it0[iteration-1] + "</button>");
-                $(".ansloc"+anslocarray[2]).html("<button type='button' class='btn btn-danger start'>" + rharray.it1[iteration-1] + "</button>");
-                $(".ansloc"+anslocarray[3]).html("<button type='button' class='btn btn-danger start'>" + rharray.it2[iteration-1] + "</button>");
+                $(".ansloc"+anslocarray[0]).html("<button type='button' class='btn btn-danger'>" + ansarray[iteration-1] + "</button>");
+                $(".ansloc"+anslocarray[1]).html("<button type='button' class='btn btn-danger'>" + rharray.it0[iteration-1] + "</button>");
+                $(".ansloc"+anslocarray[2]).html("<button type='button' class='btn btn-danger'>" + rharray.it1[iteration-1] + "</button>");
+                $(".ansloc"+anslocarray[3]).html("<button type='button' class='btn btn-danger'>" + rharray.it2[iteration-1] + "</button>");
 
                 $(".ansloc"+anslocarray[0]).unbind("click");
                 $(".ansloc"+anslocarray[0]).on("click", function() {
@@ -170,7 +170,6 @@ $(document).ready(preparepage());
                     $(".ansloc1").html("The correct answer was " + "<strong>" + ansarray[iteration-1] + "</strong>");
                 });
 
-            // runiteration = false;
             
         }
 
@@ -207,7 +206,6 @@ $(document).ready(preparepage());
                 //go to next question
                 iteration ++;
                 console.log("iteration: " + iteration);
-                // runiteration = true;
                 timerload();
                 qpgsetup(iteration);
             }
@@ -240,7 +238,7 @@ $(document).ready(preparepage());
         $(".ansloc2").text("Incorrect Answers: " + wrongcount);
         $(".ansloc3").text("Skipped Answers: " + skippedcount);
         //MAKE STARTOVER BUTTON WORK
-        $(".ansloc4").text("Start Over?");
+        $(".ansloc4").html("<button type='button' class='btn btn-danger start'>" + "Start Over?" + "</button>")
 
     }
 

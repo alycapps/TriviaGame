@@ -67,9 +67,9 @@ $(document).ready(preparepage());
 
 
     function timerload() {
-        if ($(".ansloc4").html("<button type='button' class='btn btn-danger start'>" + "Start Over?" + "</button>")) {
-        }
-        else {
+        // if ($(".ansloc4").html("<button type='button' class='btn btn-danger start'>" + "Start Over?" + "</button>")) {
+        // }
+        // else {
             var seconds = 30;
             //timer countdown
             var interval = setInterval(countdown, 1000);
@@ -85,10 +85,10 @@ $(document).ready(preparepage());
                     clearInterval(interval);
                     stop();
                     console.log("time up");
-                    skippedcount ++;
-                    console.log("skippedcount" + skippedcount);
+                    // skippedcount ++;
+                    // console.log("skippedcount" + skippedcount);
                     skippgsetup();
-                    $(".ansloc1").text("The correct answer was " + ansarray[iteration-1]);
+                    // $(".ansloc1").html("<h3>The correct answer was " + ansarray[iteration-1] + "</h3>");
                 }
 
                 //FIX COUNTDOWN
@@ -97,9 +97,8 @@ $(document).ready(preparepage());
                 //     stop();
                 // }
             }
-
             console.log("ran timerload");
-        }
+        // }
     }
 
 
@@ -113,7 +112,7 @@ $(document).ready(preparepage());
                                 it2: [q1.RedHerrings[2], q2.RedHerrings[2], q3.RedHerrings[2], q4.RedHerrings[2], q5.RedHerrings[2], q6.RedHerrings[2], q7.RedHerrings[2], q8.RedHerrings[2]],
                 };
                 
-                $(".questionlocation").text(qarray[iteration-1]);
+                $(".questionlocation").html("<h3>" + qarray[iteration-1] + "</h3>");
                 //randomize locations of answer choices
                 var anslocarray = [0,0,0,0];
                 for (i = 0; i < 4; i++) {
@@ -136,38 +135,22 @@ $(document).ready(preparepage());
 
                 $(".ansloc"+anslocarray[0]).unbind("click");
                 $(".ansloc"+anslocarray[0]).on("click", function() {
-                    console.log("correct answer chosen");
-                    correctcount ++;
-                    console.log("correctcount: " + correctcount);
                     winpgsetup();
                 });
 
                 $(".ansloc"+anslocarray[1]).unbind("click");
                 $(".ansloc"+anslocarray[1]).on("click", function() {
-                    console.log("wrong answer chosen");
-                    wrongcount ++;
-                    console.log("wrongcount: " +wrongcount);
                     losspgsetup();
-                    $(".ansloc1").html("The correct answer was " + "<strong>" + ansarray[iteration-1] + "</strong>");
                 });
 
                 $(".ansloc"+anslocarray[2]).unbind("click");
                 $(".ansloc"+anslocarray[2]).on("click", function() {
-                    console.log("wrong answer chosen");
-                    wrongcount ++;
-                    console.log("wrongcount: " +wrongcount);
                     losspgsetup();
-                    $(".ansloc1").html("The correct answer was " + "<strong>" + ansarray[iteration-1] + "</strong>");
-
                 });
 
                 $(".ansloc"+anslocarray[3]).unbind("click");
                 $(".ansloc"+anslocarray[3]).on("click", function() {
-                    console.log("wrong answer chosen");
-                    wrongcount ++;
-                    console.log("wrongcount: " +wrongcount);
                     losspgsetup();
-                    $(".ansloc1").html("The correct answer was " + "<strong>" + ansarray[iteration-1] + "</strong>");
                 });
 
             
@@ -215,32 +198,39 @@ $(document).ready(preparepage());
 
     function winpgsetup() {
         clearpage();
-        $(".questionlocation").text("YAY!!!");
+        $(".questionlocation").html("<h3>YAY!!!</h3>");
+        console.log("correct answer chosen");
+        correctcount ++;
+        console.log("correctcount: " + correctcount);
         anspgtimer();
     }
 
     function losspgsetup() {
         clearpage();
-        $(".questionlocation").text("Better luck next time");
+        $(".questionlocation").html("<h3>Better luck next time</h3> <br>" +
+        "<h4>The correct answer was " + "<strong>" + ansarray[iteration-1] + "</strong> </h4>");
+        console.log("wrong answer chosen");
+        console.log("wrongcount: " +wrongcount);
+        wrongcount ++;
         anspgtimer();
     }
 
     function skippgsetup() {
         clearpage();
-        $(".questionlocation").text("Oh no the time ran out!");
+        $(".questionlocation").html("<h3>Oh no the time ran out! <br></h3>" +
+        "<h4>The correct answer was " + "<strong>" + ansarray[iteration-1] + "</strong> </h4>");
+        skippedcount ++;
+        console.log("skippedcount" + skippedcount);
         anspgtimer();
     }
 
     function summarypgsetup() {
         clearpage();
-        $(".startbtn").html("<strong> Now let's see how patriotic you are! </strong>");
-        $(".ansloc1").text("Correct Answers: " + correctcount);
-        $(".ansloc2").text("Incorrect Answers: " + wrongcount);
-        $(".ansloc3").text("Skipped Answers: " + skippedcount);
-        //MAKE STARTOVER BUTTON WORK
-        $(".ansloc4").html("<button type='button' class='btn btn-danger start'>" + "Start Over?" + "</button>")
-
+        $(".questionlocation").html("<h3><strong> Now let's see how patriotic you are! </strong></h3> <br>" +
+        "<h4>Correct Answers: " + correctcount
+        + "<br>" +
+        "Incorrect Answers: " + wrongcount
+        + "<br>" +
+        "Skipped Answers: " + skippedcount + "</h4><br>");
+        $(".ansloc4").html("<button type='button' class='btn btn-danger start'>" + "Start Over?" + "</button>");
     }
-
-
-

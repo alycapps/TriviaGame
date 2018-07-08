@@ -4,28 +4,18 @@ $(document).ready(preparepage());
     var wrongcount = 0;
     var skippedcount = 0;
     var iteration = 1;
-    var picarray = ["https://media.giphy.com/media/7d23MUjmhw2EU/giphy.gif",
-    // "./assets/images/TeddyRoosevelt.jpg", 
+    var picarray = ["https://media.giphy.com/media/5tFQ4iWarax3y/giphy.gif",
     "https://media.giphy.com/media/wqHXbOcynM7Oo/giphy.gif",
-    // "./assets/images/RaisingTheFlag.jpg", 
     "https://media.giphy.com/media/f4HpCDvF84oh2/giphy.gif",
-    // "./assets/images/americandog.jpg",
     "https://media.giphy.com/media/8KnfG3knLExpu/giphy.gif",
-    // "./assets/images/DecofInd.jpg",
     "https://media.giphy.com/media/VfyC5j7sR4cso/giphy.gif",
-    // "./assets/images/unclesam.jpg",
     "https://media.giphy.com/media/l1J9KJE8BKO09QTzW/giphy.gif",
-    // "./assets/images/starwars.jpg",
     "https://media.giphy.com/media/eeGp0S98LR1io/giphy.gif",
-    // "./assets/images/captainamerica.jpg",
-    "https://media.giphy.com/media/ktExCvEeKgE12/giphy.gif",
-    // "https://media.giphy.com/media/ByVCdBesCZHi0/giphy.gif",
-    // "./assets/images/americacat.jpg",
-    "https://media.giphy.com/media/EPDjO7pkxU8KI/giphy.gif",
-    // "./assets/images/WashingtonCrossingTheDeleware.jpg"];
+    "https://media.giphy.com/media/l6Td5sKDNmDGU/giphy.gif",
+    "https://media.giphy.com/media/65kQC6Mg4XIsw/giphy.gif",
     ];
     
-    //make question objects
+    //question objects
     var q1 = {
         Question:"Which US President was shot while giving a speech but still finished the 90 min speech?",
         Answer: "Theodore Roosevelt",
@@ -74,17 +64,15 @@ $(document).ready(preparepage());
         RedHerrings: ["Simba", "Oliver", "Mittens"],
     };
 
-// hit start button to go to first question
+// click event for start button - set up timer and page
     function preparepage() {
         $(".start").on("click", function() {
             timerload();
             qpgsetup(iteration);
-            // console.log("start button clicked");
         });
     };
 
     var ansarray = [q1.Answer, q2.Answer, q3.Answer, q4.Answer, q5.Answer, q6.Answer, q7.Answer, q8.Answer];
-
 
     function timerload() {
         //only run on question pages not summary page
@@ -103,11 +91,9 @@ $(document).ready(preparepage());
                 if (seconds === 0) {
                     clearInterval(interval);
                     stop();
-                    console.log("time up");
                     skippgsetup();
                 }
             }
-            console.log("ran timerload");
         }
         else {
             clearInterval(interval);
@@ -133,14 +119,11 @@ $(document).ready(preparepage());
                     var x = Math.floor(Math.random() * 4) + 1;
                     var v = anslocarray.indexOf(x);
                     while (v >= 0) {
-                        console.log("loop started - value is " + x + " and array looks like: " + anslocarray)
                         x = Math.floor(Math.random() * 4) + 1;
                         v = anslocarray.indexOf(x);
-                        console.log(v);
                     }
                     anslocarray[i] = x;
                 }
-                console.log(anslocarray);
         
                 $(".ansloc"+anslocarray[0]).html("<button type='button' class='btn btn-danger'>" + ansarray[iteration-1] + "</button>");
                 $(".ansloc"+anslocarray[1]).html("<button type='button' class='btn btn-danger'>" + rharray.it0[iteration-1] + "</button>");
@@ -167,12 +150,12 @@ $(document).ready(preparepage());
                     losspgsetup();
                 });
         }
-
         else {
             summarypgsetup();
         }
     };
     
+    //remove previous page setup
     function clearpage() {
         $(".startbtn").text("");
         $(".questionlocation").text("");
@@ -182,7 +165,6 @@ $(document).ready(preparepage());
         $(".ansloc4").text("");
         $(".timerlocation").text("");
         $(".restartbtn").text("");
-        console.log("clear page function ran");
     }
 
     function anspgtimer() {
@@ -191,30 +173,22 @@ $(document).ready(preparepage());
         var time = 5;
         function anspgcountdown() {
             time--;
-            console.log("ran anspgcountdown");
-            console.log("anspgtimer sec" + time);
-
             //once time is up
             if (time === 0) {
                 clearInterval(interval);
                 stop();
-                console.log("auto next page time up");
                 //go to next question
                 iteration ++;
-                console.log("iteration: " + iteration);
                 timerload();
                 qpgsetup(iteration);
             }
           }
-        console.log("ran anspgtimer");
     }
 
     function winpgsetup() {
         clearpage();
         $(".questionlocation").html("<h3>YAY!!!</h3>");
-        console.log("correct answer chosen");
         correctcount ++;
-        console.log("correctcount: " + correctcount);
         anspgtimer();
         $(".ansloc1").html('<img src="' + picarray[iteration-1] + '" />')
     }
@@ -223,8 +197,6 @@ $(document).ready(preparepage());
         clearpage();
         $(".questionlocation").html("<h3>Better luck next time</h3> <br>" +
         "<h4>The correct answer was " + "<strong>" + ansarray[iteration-1] + "</strong> </h4>");
-        console.log("wrong answer chosen");
-        console.log("wrongcount: " +wrongcount);
         wrongcount ++;
         anspgtimer();
         $(".ansloc1").html('<img src="' + picarray[iteration-1] + '" />')
@@ -235,7 +207,6 @@ $(document).ready(preparepage());
         $(".questionlocation").html("<h3>Oh no the time ran out! <br></h3>" +
         "<h4>The correct answer was " + "<strong>" + ansarray[iteration-1] + "</strong> </h4>");
         skippedcount ++;
-        console.log("skippedcount" + skippedcount);
         anspgtimer();
         $(".ansloc1").html('<img src="' + picarray[iteration-1] + '" />')
     }

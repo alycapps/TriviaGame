@@ -13,3 +13,5 @@ At the end of the game, the user will see a summary page with a count of how man
 -CSS
 -Bootstrap
 -HTML
+
+Please visit the deployed site at: http://alyssacapps.me/TriviaGame/
